@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NetMauiGPTApp.Views.ConversationView"
+             xmlns:vm="clr-namespace:NetMauiGPTApp.ViewModels"
+             x:DataType="vm:ConversationViewModel"
+             Title="ChatGPT">
+    <Grid RowSpacing="5" 
+          ColumnSpacing="5"
+          Margin="10"
+          RowDefinitions="Auto,Auto,*,*"
+          ColumnDefinitions="150,*">
+        <Label Text="What's your query?"
+               VerticalOptions="Center"/>
+            
+        <Entry Grid.Column="1" 
+               Text="{Binding Query}" 
+               WidthRequest="200"
+               HorizontalOptions="Start"/>
+
+        <ActivityIndicator Grid.Row="1" 
+                           Grid.ColumnSpan="2"
+                           HeightRequest="40"
+                           IsRunning="{Binding IsBusy}"/>
+
+        <Button Grid.Row="2"
+                Text="Ask a question"
+                Command="{Binding AskQuestionCommand}"
+                HorizontalOptions="Center"
+                HeightRequest="60"
+                BackgroundColor="ForestGreen"/>
+
+        <Editor Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding Answer}"
+                HeightRequest="200"
+                BackgroundColor="LightSkyBlue"/>
+
+        <Button Grid.Row="3" 
+                Text="Create an image"
+                Command="{Binding CreateImageCommand}"
+                HorizontalOptions="Center"
+                HeightRequest="60"
+                BackgroundColor="ForestGreen"/>
+
+        <Image Grid.Row="3"
+               Grid.Column="1"
+               Source="{Binding GeneratedImage}"
+               Aspect="AspectFit"
+               WidthRequest="200"
+               HeightRequest="200"/>
+    </Grid>
+</ContentPage>
