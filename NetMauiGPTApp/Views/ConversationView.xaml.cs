@@ -4,10 +4,14 @@ namespace NetMauiGPTApp.Views;
 
 public partial class ConversationView : ContentPage
 {
-	public ConversationView(ConversationViewModel vm)
-	{
-		InitializeComponent();
+    public ConversationView(ConversationViewModel vm)
+    {
+        InitializeComponent();
 
-		this.BindingContext = vm;
-	}
+        BindingContext = vm;
+
+        vm.CollectionView = myCollectionView;
+        vm.ConversationView = mainPage;
+    }
+
 }
